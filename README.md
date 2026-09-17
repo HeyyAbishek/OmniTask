@@ -12,63 +12,61 @@ The app demonstrates a robust full-stack architecture, utilizing a custom RESTfu
 
 ### Core Functionality
 
-- 🔐 **User Authentication (JWT)**
+* 🔐 **User Authentication (JWT)**
 
-  - Secure user registration and login with hashed passwords using `bcrypt`
-  - JSON Web Token (JWT) session management
-  - Persistent local session storage using `AsyncStorage`
+  * Secure user registration and login with hashed passwords using `bcrypt`
+  * JSON Web Token (JWT) session management
+  * Persistent local session storage using `AsyncStorage`
 
-- 📝 **Task Management (CRUD)**
+* 📝 **Task Management (CRUD)**
 
-  - Full create, read, update, and delete task operations
-  - Comprehensive task attributes:
+  * Full create, read, update, and delete task operations
+  * Comprehensive task attributes:
 
-    - Title and description
-    - Start date/time and deadline
-    - Priority level: Low, Medium, High
-    - Category: Work, Personal, Study, Other
-    - Completion status
+    * Title and description
+    * Start date/time and deadline
+    * Priority level: Low, Medium, High
+    * Category: Work, Personal, Study, Other
+    * Completion status
 
-- 🧠 **Smart Task Organization**
+* 🧠 **Smart Task Organization**
 
-  - **Intelligent Priority Algorithm:** Tasks are automatically sorted using a weighted scoring system combining priority weights, overdue/urgency bonuses, and remaining time until the deadline.
-  - Completed tasks automatically move to the bottom of the list.
-  - Filter tasks by status:
+  * **Intelligent Priority Algorithm:** Tasks are automatically sorted using a weighted scoring system combining priority weights, overdue/urgency bonuses, and remaining time until the deadline.
+  * Completed tasks automatically move to the bottom of the list.
+  * Filter tasks by status:
 
-    - All tasks
-    - Active only
-    - Completed only
+    * All tasks
+    * Active only
+    * Completed only
 
 ### User Experience
 
-- 🎨 **Modern UI/UX**
+* 🎨 **Modern UI/UX**
 
-  - Clean, Material Design-inspired interface
-  - Priority-colored visual indicators
-  - Overdue task highlighting
-  - Smooth navigation flows using React Navigation
+  * Clean, Material Design-inspired interface
+  * Priority-colored visual indicators
+  * Overdue task highlighting
+  * Smooth navigation flows using React Navigation
 
 ## 🏗️ Architecture & Tech Stack
 
-### Tech Stack
+### Frontend
 
-#### Frontend
+* React Native CLI
+* TypeScript
+* Axios - HTTP client for API communication
+* React Navigation - Native Stack navigation
+* AsyncStorage - Local token persistence
 
-- React Native CLI
-- TypeScript
-- Axios - HTTP client for API communication
-- React Navigation - Native Stack navigation
-- AsyncStorage - Local token persistence
+### Backend
 
-#### Backend
-
-- Node.js
-- Express
-- TypeScript
-- MongoDB
-- Mongoose - MongoDB ODM
-- JSON Web Tokens (JWT)
-- Bcrypt - Password hashing
+* Node.js
+* Express
+* TypeScript
+* MongoDB
+* Mongoose - MongoDB ODM
+* JSON Web Tokens (JWT)
+* Bcrypt - Password hashing
 
 ## 📁 Project Structure
 
@@ -92,7 +90,7 @@ OmniTask/
     │   ├── models/                 # Mongoose schemas
     │   ├── routes/                 # API endpoints
     │   └── index.ts                # Server entry point
-    └── .env                        # Environment variables
+    └── .env                         # Environment variables
 ```
 
 ## 🚀 Setup & Installation
@@ -101,10 +99,10 @@ OmniTask/
 
 Make sure the following are installed:
 
-- **Node.js** v16 or higher
-- **MongoDB** installed locally or a cloud MongoDB URI
-- **Android Studio** for Android development
-- **Xcode** for iOS development on macOS
+* **Node.js** v16 or higher
+* **MongoDB** installed locally or a cloud MongoDB URI
+* **Android Studio** for Android development
+* **Xcode** for iOS development on macOS
 
 ### 1. Backend Setup
 
@@ -189,6 +187,7 @@ npm start
 In a separate terminal, run:
 
 ```bash
+cd OmniTask/mobile
 npm run android
 ```
 
@@ -206,14 +205,14 @@ Authenticate using your credentials. Your JWT token is stored locally on the dev
 
 After logging in, you can:
 
-- Create new tasks
-- Edit existing tasks
-- Mark tasks as completed
-- Delete tasks
-- Set task priorities
-- Assign categories
-- Set start dates and deadlines
-- Filter tasks by completion status
+* Create new tasks
+* Edit existing tasks
+* Mark tasks as completed
+* Delete tasks
+* Set task priorities
+* Assign categories
+* Set start dates and deadlines
+* Filter tasks by completion status
 
 All task operations are synchronized with the MongoDB database through the Express REST API.
 
@@ -265,11 +264,11 @@ OmniTask uses a weighted scoring system to organize tasks based on their urgency
 
 The scoring considers factors such as:
 
-- Task priority
-- Deadline urgency
-- Overdue status
-- Remaining time
-- Completion status
+* Task priority
+* Deadline urgency
+* Overdue status
+* Remaining time
+* Completion status
 
 Completed tasks are automatically moved toward the bottom of the list, while urgent and high-priority tasks receive greater importance.
 
@@ -279,21 +278,25 @@ The backend exposes RESTful API endpoints for authentication and task management
 
 ### Authentication
 
-```text
-POST /api/users/register
-POST /api/users/login
+```http
+POST /api/auth/register
+POST /api/auth/login
 ```
 
 ### Tasks
 
-```text
-GET    /api/tasks
+```http
+GET    /api/tasks/user/:userId
 POST   /api/tasks
-PUT    /api/tasks/:id
+PATCH  /api/tasks/:id
 DELETE /api/tasks/:id
 ```
 
-Protected endpoints require a valid JWT token.
+Protected endpoints require a valid JWT token via the `Authorization` header:
+
+```http
+Authorization: Bearer <token>
+```
 
 ## 📦 Main Technologies
 
