@@ -176,15 +176,31 @@ http://YOUR_LOCAL_IP:5000/api
 
 Make sure both the phone and computer are connected to the same network.
 
-### 3. Run the Android Application
+### 3. Run the Application
 
-Start the Metro bundler:
+You will need **two separate terminal windows** open simultaneously.
+
+#### Terminal 1: Start the Backend Server
+
+Navigate to the server directory and start the API:
 
 ```bash
+cd OmniTask/server
 npm start
 ```
 
-In a separate terminal, run:
+#### Terminal 2: Run the Android Application
+
+Open a new terminal window, navigate to the mobile directory, and start the Metro bundler:
+
+```bash
+cd OmniTask/mobile
+npm start
+```
+
+Leave the Metro bundler running.
+
+Open a separate terminal window or split pane and run:
 
 ```bash
 cd OmniTask/mobile
